@@ -111,7 +111,7 @@
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 30px;">
+                <div class="form-actions">
                     <a href="{{ route('slaughters.index') }}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Registrar Beneficio</button>
                 </div>

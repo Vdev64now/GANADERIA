@@ -17,6 +17,7 @@
             <div class="sidebar-brand">
                 <span class="brand-icon">🐂</span>
                 <span class="brand-name">GanadoFlow</span>
+                <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar Menú">✕</button>
             </div>
             <ul class="sidebar-menu">
                 @php
@@ -110,7 +111,10 @@
         <div class="main-wrapper">
             <!-- Topbar -->
             <header class="topbar">
-                <h2 class="page-title">@yield('page_title', 'Dashboard')</h2>
+                <div class="topbar-left">
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menú">☰</button>
+                    <h2 class="page-title">@yield('page_title', 'Dashboard')</h2>
+                </div>
                 <div class="topbar-actions">
                     <!-- Global Farm Filter -->
                     <div class="farm-filter-container">
@@ -162,5 +166,41 @@
             </main>
         </div>
     </div>
+
+    <!-- Mobile Navigation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarClose = document.getElementById('sidebar-close');
+            
+            if (menuToggle && sidebar) {
+                // Create backdrop element dynamically
+                const backdrop = document.createElement('div');
+                backdrop.className = 'sidebar-backdrop';
+                document.body.appendChild(backdrop);
+                
+                function openMenu() {
+                    sidebar.classList.add('active');
+                    backdrop.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
+                }
+                
+                function closeMenu() {
+                    sidebar.classList.remove('active');
+                    backdrop.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scroll
+                }
+                
+                menuToggle.addEventListener('click', openMenu);
+                
+                if (sidebarClose) {
+                    sidebarClose.addEventListener('click', closeMenu);
+                }
+                
+                backdrop.addEventListener('click', closeMenu);
+            }
+        });
+    </script>
 </body>
 </html>

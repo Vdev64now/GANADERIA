@@ -98,7 +98,7 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 30px;">
+            <div class="form-actions">
                 <a href="{{ route('cattle.index') }}" class="btn btn-secondary">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Actualizar Registro</button>
             </div>

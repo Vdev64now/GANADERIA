@@ -40,7 +40,7 @@
                 @enderror
             </div>
 
-            <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <div class="form-actions">
                 <a href="{{ route('farms.index') }}" class="btn btn-secondary">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Actualizar Hacienda</button>
             </div>

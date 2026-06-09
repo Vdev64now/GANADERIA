@@ -668,6 +668,80 @@ p {
     color: var(--warning) !important;
 }
 
+/* Sidebar default left coordinate */
+.sidebar {
+    left: 0;
+}
+
+/* Menu Toggle Button (Hamburger) */
+.menu-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar Close Button */
+.sidebar-close {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    margin-left: auto;
+}
+
+.sidebar-close:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar Backdrop Overlay */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Form Actions Responsiveness */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
 /* Responsive adjust */
 @media (max-width: 1024px) {
     .sidebar {
@@ -686,13 +760,101 @@ p {
 }
 
 @media (max-width: 768px) {
+    /* Hide sidebar off-screen */
+    .sidebar {
+        width: 260px;
+        left: -260px;
+        z-index: 1000;
+    }
+    
+    .sidebar.active {
+        left: 0;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+    }
+    
+    .sidebar.active .brand-name,
+    .sidebar.active .menu-text {
+        display: block !important;
+    }
+    
+    .sidebar-close {
+        display: block;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .main-wrapper {
+        margin-left: 0 !important;
+    }
+    
+    .topbar {
+        padding: 0 20px;
+        height: auto;
+        min-height: 70px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .topbar-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .farm-filter-container {
+        width: 100%;
+    }
+    
+    .custom-select {
+        flex: 1;
+        width: 100%;
+    }
+    
+    .content-container {
+        padding: 20px;
+    }
+    
     .deboning-interface {
         grid-template-columns: 1fr;
     }
-    .topbar {
-        padding: 0 20px;
+    
+    /* Prevent mobile zoom */
+    .form-control, .custom-select {
+        font-size: 16px;
     }
-    .content-container {
-        padding: 20px;
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .section-header .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-actions {
+        flex-direction: column-reverse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    .grid-stats {
+        grid-template-columns: 1fr;
     }
 }

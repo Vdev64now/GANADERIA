@@ -111,7 +111,7 @@
                         </div>
                     @endforeach
 
-                    <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 30px;">
+                    <div class="form-actions">
                         <a href="{{ route('debonings.index') }}" class="btn btn-secondary">Cancelar</a>
                         <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Registrar Despostaje</button>
                     </div>
