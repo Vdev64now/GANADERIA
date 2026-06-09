@@ -76,29 +76,34 @@
                         <span class="menu-text">Clientes</span>
                     </a>
                 </li>
-                <li class="menu-item" style="margin-top: auto;">
+            </ul>
+
+            <!-- Sidebar Footer (Fixed at the bottom) -->
+            <div class="sidebar-footer" style="margin-top: auto; display: flex; flex-direction: column; border-top: 1px solid var(--border-color); background-color: rgba(0,0,0,0.15);">
+                <!-- Logout Button inside footer -->
+                <div class="menu-item-logout" style="padding: 14px 28px;">
                     <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
                         @csrf
                     </form>
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: var(--danger);">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="display: flex; align-items: center; gap: 12px; color: var(--danger); font-weight: 500; font-size: 15px; transition: var(--transition);">
                         <span>🚪</span>
                         <span class="menu-text">Cerrar Sesión</span>
                     </a>
-                </li>
-            </ul>
-
-            <!-- User Panel -->
-            @auth
-                <div class="sidebar-user" style="padding: 16px 20px; border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px; background-color: rgba(0,0,0,0.15);">
-                    <div class="user-avatar" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--info)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #ffffff; font-size: 14px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);">
-                        {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
-                    </div>
-                    <div class="user-info" style="display: flex; flex-direction: column; overflow: hidden;">
-                        <span class="user-name" style="font-size: 14px; font-weight: 600; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ Auth::user()->name ?? 'Administrador' }}</span>
-                        <span class="user-email" style="font-size: 11px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ Auth::user()->email ?? 'admin@ganadoflow.com' }}</span>
-                    </div>
                 </div>
-            @endauth
+
+                <!-- User Panel -->
+                @auth
+                    <div class="sidebar-user" style="padding: 16px 20px; border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px;">
+                        <div class="user-avatar" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--info)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #ffffff; font-size: 14px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);">
+                            {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
+                        </div>
+                        <div class="user-info" style="display: flex; flex-direction: column; overflow: hidden;">
+                            <span class="user-name" style="font-size: 14px; font-weight: 600; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ Auth::user()->name ?? 'Administrador' }}</span>
+                            <span class="user-email" style="font-size: 11px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ Auth::user()->email ?? 'admin@ganadoflow.com' }}</span>
+                        </div>
+                    </div>
+                @endauth
+            </div>
         </aside>
 
         <!-- Main Workspace -->
