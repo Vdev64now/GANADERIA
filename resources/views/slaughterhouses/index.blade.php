@@ -26,13 +26,13 @@
                 <tbody>
                     @forelse($slaughterhouses as $item)
                         <tr>
-                            <td style="font-weight: 600; color: #ffffff;">{{ $item->name }}</td>
-                            <td>{{ $item->location ?? 'No especificada' }}</td>
-                            <td>{{ Str::limit($item->description, 60) ?? 'Sin descripción' }}</td>
-                            <td>
+                            <td data-label="Nombre" style="font-weight: 600; color: #ffffff;">{{ $item->name }}</td>
+                            <td data-label="Ubicación">{{ $item->location ?? 'No especificada' }}</td>
+                            <td data-label="Descripción">{{ Str::limit($item->description, 60) ?? 'Sin descripción' }}</td>
+                            <td data-label="Beneficios Registrados">
                                 <span class="badge badge-info">{{ $item->slaughters_count }} Beneficios</span>
                             </td>
-                            <td style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
+                            <td data-label="Acciones" style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
                                 <a href="{{ route('slaughterhouses.edit', $item->id) }}" class="btn btn-secondary btn-sm">
                                     Editar
                                 </a>

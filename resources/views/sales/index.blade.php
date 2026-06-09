@@ -26,12 +26,12 @@
                 <tbody>
                     @forelse($sales as $sale)
                         <tr>
-                            <td style="font-weight: 600; color: #ffffff;">{{ $sale->customer->display_name ?? 'N/A' }}</td>
-                            <td>{{ $sale->sale_date->format('d/m/Y') }}</td>
-                            <td>
+                            <td data-label="Cliente / Carnicería" style="font-weight: 600; color: #ffffff;">{{ $sale->customer->display_name ?? 'N/A' }}</td>
+                            <td data-label="Fecha de Venta">{{ $sale->sale_date->format('d/m/Y') }}</td>
+                            <td data-label="Detalle de Productos Vendidos">
                                 <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px;">
                                     @foreach($sale->saleItems as $item)
-                                        <li style="font-size: 13px; color: var(--text-secondary);">
+                                        <li style="font-size: 13px; color: var(--text-secondary); text-align: inherit;">
                                             @if($item->type === 'media_canal_izquierda')
                                                 🥩 <strong>Media Canal Izquierda</strong> (Res #{{ $item->slaughter->cattle->ear_tag ?? 'N/A' }}) - 
                                             @elseif($item->type === 'media_canal_derecha')
@@ -45,10 +45,10 @@
                                     @endforeach
                                 </ul>
                             </td>
-                            <td style="font-weight: 700; color: var(--primary); font-size: 16px;">
+                            <td data-label="Monto Total (USD)" style="font-weight: 700; color: var(--primary); font-size: 16px;">
                                 ${{ number_format($sale->total_amount, 2) }}
                             </td>
-                            <td style="text-align: right;">
+                            <td data-label="Acciones" style="text-align: right;">
                                 <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de anular esta venta? El peso vendido se reincorporará automáticamente al inventario o las canales volverán a estar Disponibles.');">
                                     @csrf
                                     @method('DELETE')

@@ -19,20 +19,20 @@
                         <th>Nombre</th>
                         <th>Ubicación</th>
                         <th>Descripción</th>
-                        <th>Cattle Registrado</th>
+                        <th>Ganado Registrado</th>
                         <th style="text-align: right;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($farms as $farm)
                         <tr>
-                            <td style="font-weight: 600; color: #ffffff;">{{ $farm->name }}</td>
-                            <td>{{ $farm->location ?? 'No especificada' }}</td>
-                            <td>{{ Str::limit($farm->description, 60) ?? 'Sin descripción' }}</td>
-                            <td>
+                            <td data-label="Nombre" style="font-weight: 600; color: #ffffff;">{{ $farm->name }}</td>
+                            <td data-label="Ubicación">{{ $farm->location ?? 'No especificada' }}</td>
+                            <td data-label="Descripción">{{ Str::limit($farm->description, 60) ?? 'Sin descripción' }}</td>
+                            <td data-label="Ganado Registrado">
                                 <span class="badge badge-info">{{ $farm->cattles_count }} Cabezas</span>
                             </td>
-                            <td style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
+                            <td data-label="Acciones" style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
                                 <a href="{{ route('farms.edit', $farm->id) }}" class="btn btn-secondary btn-sm">
                                     Editar
                                 </a>

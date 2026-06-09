@@ -36,15 +36,15 @@
                             $isBelowThreshold = $yield < $minYield;
                         @endphp
                         <tr class="{{ $isBelowThreshold ? 'text-warning' : '' }}">
-                            <td style="font-weight: 600; color: #ffffff;">
+                            <td data-label="Res (Arete)" style="font-weight: 600; color: #ffffff;">
                                 {{ $item->cattle->ear_tag }} ({{ $item->cattle->breed ?? 'S/R' }})
                             </td>
-                            <td>{{ $item->slaughter_date->format('d/m/Y') }}</td>
-                            <td>{{ $item->slaughterhouse->name ?? 'N/A' }}</td>
-                            <td>{{ number_format($item->left_carcass_weight, 2) }} kg</td>
-                            <td>{{ number_format($item->right_carcass_weight, 2) }} kg</td>
-                            <td style="font-weight: 600;">{{ number_format($item->total_carcass_weight, 2) }} kg</td>
-                            <td>
+                            <td data-label="Fecha Matanza">{{ $item->slaughter_date->format('d/m/Y') }}</td>
+                            <td data-label="Matadero">{{ $item->slaughterhouse->name ?? 'N/A' }}</td>
+                            <td data-label="Canal Izq. (kg)">{{ number_format($item->left_carcass_weight, 2) }} kg</td>
+                            <td data-label="Canal Der. (kg)">{{ number_format($item->right_carcass_weight, 2) }} kg</td>
+                            <td data-label="Canal Total (kg)" style="font-weight: 600;">{{ number_format($item->total_carcass_weight, 2) }} kg</td>
+                            <td data-label="Rendimiento (%)">
                                 <span class="badge {{ $isBelowThreshold ? 'badge-danger' : 'badge-success' }}">
                                     {{ number_format($yield, 2) }}%
                                 </span>
@@ -54,7 +54,7 @@
                                     </div>
                                 @endif
                             </td>
-                            <td>
+                            <td data-label="Estado Lados">
                                 <!-- Left side badge -->
                                 <span class="badge 
                                     @if($item->left_carcass_status === 'disponible') badge-success
@@ -70,8 +70,8 @@
                                     D: {{ $item->right_carcass_status }}
                                 </span>
                             </td>
-                            <td style="font-weight: 500;">${{ number_format($item->slaughter_cost, 2) }}</td>
-                            <td style="text-align: right;">
+                            <td data-label="Costo ($)" style="font-weight: 500;">${{ number_format($item->slaughter_cost, 2) }}</td>
+                            <td data-label="Acciones" style="text-align: right;">
                                 <form action="{{ route('slaughters.destroy', $item->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de eliminar este registro? Se restablecerá el estado del ganado a En Pie.');">
                                     @csrf
                                     @method('DELETE')

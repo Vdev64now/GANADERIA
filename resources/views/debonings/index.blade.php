@@ -34,16 +34,16 @@
                             $isAboveWasteLimit = $wastePct > $maxWaste;
                         @endphp
                         <tr class="{{ $isAboveWasteLimit ? 'text-danger' : '' }}">
-                            <td style="font-weight: 600; color: #ffffff;">
+                            <td data-label="Res (Arete)" style="font-weight: 600; color: #ffffff;">
                                 {{ $item->slaughter->cattle->ear_tag }}
                             </td>
-                            <td>{{ $item->deboning_date->format('d/m/Y') }}</td>
-                            <td>
+                            <td data-label="Fecha Desposte">{{ $item->deboning_date->format('d/m/Y') }}</td>
+                            <td data-label="Lado Despostado">
                                 <span class="badge badge-info">{{ ucfirst($item->side) }}</span>
                             </td>
-                            <td>{{ number_format($item->input_weight, 2) }} kg</td>
-                            <td style="font-weight: 600;">{{ number_format($item->total_cuts_weight, 2) }} kg</td>
-                            <td>
+                            <td data-label="Peso Entrada (kg)">{{ number_format($item->input_weight, 2) }} kg</td>
+                            <td data-label="Peso Obtenido (kg)" style="font-weight: 600;">{{ number_format($item->total_cuts_weight, 2) }} kg</td>
+                            <td data-label="Merma de Desposte (kg)">
                                 <span class="{{ $isAboveWasteLimit ? 'text-danger' : 'text-success' }}" style="font-weight: 500;">
                                     {{ number_format($item->waste_weight, 2) }} kg ({{ number_format($wastePct, 2) }}%)
                                 </span>
@@ -53,10 +53,10 @@
                                     </div>
                                 @endif
                             </td>
-                            <td>
+                            <td data-label="Rendimiento Desposte (%)">
                                 <span class="badge badge-success">{{ number_format($item->yield_percentage, 2) }}%</span>
                             </td>
-                            <td style="text-align: right;">
+                            <td data-label="Acciones" style="text-align: right;">
                                 <form action="{{ route('debonings.destroy', $item->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de anular este despostaje? Se reintegrará la media canal en stock y se eliminarán los cortes del inventario.');">
                                     @csrf
                                     @method('DELETE')

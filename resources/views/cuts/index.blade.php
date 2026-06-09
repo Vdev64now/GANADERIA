@@ -95,8 +95,8 @@
                     <tbody>
                         @forelse($cutTypes as $cut)
                             <tr>
-                                <td style="font-weight: 600; color: #ffffff;">{{ $cut->name }}</td>
-                                <td>
+                                <td data-label="Nombre del Corte" style="font-weight: 600; color: #ffffff;">{{ $cut->name }}</td>
+                                <td data-label="Categoría">
                                     <span class="badge 
                                         @if($cut->category === 'Primera') badge-success
                                         @elseif($cut->category === 'Segunda') badge-info
@@ -104,8 +104,8 @@
                                         {{ $cut->category }}
                                     </span>
                                 </td>
-                                <td>{{ Str::limit($cut->description, 50) ?? 'Sin descripción' }}</td>
-                                <td style="text-align: right;">
+                                <td data-label="Descripción">{{ Str::limit($cut->description, 50) ?? 'Sin descripción' }}</td>
+                                <td data-label="Acciones" style="text-align: right;">
                                     <form action="{{ route('cuts.destroy', $cut->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de eliminar este tipo de corte?');">
                                         @csrf
                                         @method('DELETE')

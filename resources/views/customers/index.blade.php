@@ -27,20 +27,20 @@
                 <tbody>
                     @forelse($customers as $item)
                         <tr>
-                            <td style="font-weight: 600; color: #ffffff;">{{ $item->full_name }}</td>
-                            <td>{{ $item->phone ?? 'N/A' }}</td>
-                            <td>
+                            <td data-label="Nombre Completo" style="font-weight: 600; color: #ffffff;">{{ $item->full_name }}</td>
+                            <td data-label="Teléfono">{{ $item->phone ?? 'N/A' }}</td>
+                            <td data-label="¿Tiene Carnicería?">
                                 @if($item->has_butcher_shop)
                                     <span class="badge badge-success">Sí</span>
                                 @else
                                     <span class="badge badge-muted">No</span>
                                 @endif
                             </td>
-                            <td>{{ $item->butcher_shop_name ?? 'N/A' }}</td>
-                            <td>
+                            <td data-label="Nombre Carnicería">{{ $item->butcher_shop_name ?? 'N/A' }}</td>
+                            <td data-label="Compras Registradas">
                                 <span class="badge badge-info">{{ $item->sales_count }} Compras</span>
                             </td>
-                            <td style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
+                            <td data-label="Acciones" style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
                                 <a href="{{ route('customers.edit', $item->id) }}" class="btn btn-secondary btn-sm">
                                     Editar
                                 </a>
